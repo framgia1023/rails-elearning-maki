@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             flash[:info] = "Welcome back, #{user.name}！"
             redirect_to root_url
         else
-            flash[:danger] = "Ooops:( Your email or password was incorrect. Please try again!"
+            flash[:danger] = "Ooops! Your email or password was incorrect. Please try again!"
             render 'new'
         end
     end
