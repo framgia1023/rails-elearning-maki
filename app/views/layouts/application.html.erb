@@ -11,7 +11,10 @@
 
     <body>
         <%= render 'layouts/header' %>
-        <%= yield %>
+        <%= render 'shared/flash_messages' %>
+            <div class="container p-5">
+                <%= yield %>
+            </div>
         <%= render 'layouts/footer' %>
     </body>
 </html>
