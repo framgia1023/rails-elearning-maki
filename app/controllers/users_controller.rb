@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
     def require_login
         unless logged_in?
-            flash[:info] = "Please login to gain access."
+            flash[:info] = "Please login to gain access." 
             redirect_to login_url
         end
     end
