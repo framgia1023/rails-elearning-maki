@@ -1,4 +1,4 @@
-module SessionsHelper
+module SessionsHelper 
 
     def current_user
         User.find_by(id: session[:user_id])
@@ -11,5 +11,5 @@ module SessionsHelper
     def current_user?(user)
         current_user == user
     end
-    
+
 end
