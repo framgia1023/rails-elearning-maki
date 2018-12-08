@@ -4,6 +4,11 @@
     <% @users.each do |user| %>
         <div class='col-lg-6'>
             <div class='media mb-3'>
+                <% if user.picture? %>
+                    <%= image_tag user.picture.url, class: 'pic-list' %>
+                <% else %>
+                    <%= image_tag 'default.jpg', class: "pic-list" %>
+                <% end %>
                 <div class="media-body">
                     <h4><%= link_to user.name, user %></h4>
                     

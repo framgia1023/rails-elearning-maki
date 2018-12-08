@@ -6,48 +6,55 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
-        </li>
-
-        <li class="nav-item">
-            <%= link_to "Contact", contact_path, class: "nav-link" %>
-        </li>
-
         <% if logged_in? %>
-         <li class="nav-item">
-            <%= link_to "Users", users_path, class: 'nav-link' %>
-        </li>
-
-         <li class="nav-item">
-            <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
-        </li>
-
-        <% else %>
-
         <li class="nav-item">
-            <%= link_to "Sign up", new_user_path, class: "nav-link" %>
+            <%= link_to "#", class: 'nav-link' do %>
+            <i class="fas fa-list-ul"></i> Dashboard
+            <% end %>
         </li>
-
         <li class="nav-item">
-            <%= link_to "Log in", login_path, class: "nav-link" %>
+            <%= link_to users_path, class: 'nav-link'  do %>
+            <i class="fas fa-users"></i> Members
+            <% end %>
         </li>
-
-        <% end %>
-
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-            </a>
+                <%= current_user.name %>
+            </a>        
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+                <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Logout", user_path(current_user), method: :delete, class: "dropdown-item" %>
+            <div class="dropdown-divider">
+            </div>
+                <a class="dropdown-item" href="#">Coming soon here...</a>
             </div>
         </li>
 
+        <% else %>
+        <li class="nav-item">
+            <%= link_to root_path, class: "nav-link" do %>
+            <i class="fas fa-home"></i> Home
+            <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to contact_path, class: "nav-link" do %>
+            <i class="fas fa-envelope"></i> Contact
+            <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to new_user_path, class: "nav-link" do %>
+            <i class="fas fa-user-plus"></i> Sign up
+            <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to login_path, class: "nav-link" do %>
+            <i class="fas fa-sign-in-alt"></i> Log in
+            <% end %>
+        </li>
+        <% end %>
         </ul>
+        
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
