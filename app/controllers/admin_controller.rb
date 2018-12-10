@@ -7,5 +7,4 @@ before_action :require_admin
             redirect_to(root_url) 
         end
     end
-
 end
