@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: :create
   resources :relationships, only: [:create, :destroy]
+  resources :categories, only: [:index]
+  namespace :admin do
+    resources :categories
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

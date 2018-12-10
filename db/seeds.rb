@@ -11,7 +11,8 @@ require 'faker'
 User.create(
     name: 'Maki Maeda',
     email: 'shumbodynamedmaki@gmail.com',
-    password: 'maki7022'
+    password: 'maki7022',
+    admin: true
 )
 
 50.times do |n|

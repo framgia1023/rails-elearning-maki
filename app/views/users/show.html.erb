@@ -1,45 +1,47 @@
 <div class="row">
     <div class="col-lg-4">
-        <div class="card mb-3">
+        <div class="card mb-6">
             <div class="card-body text-center">
                 <% if @user.picture? %>
                     <%= image_tag @user.picture.url, class: 'pic-list' %>
                 <% else %>
                     <%= image_tag 'default.jpg', class: 'pic-list' %>
                 <% end %>
+                <p></P>
+                    <h5><%= @user.name %></h5>
+                    <p><%= @user.email %></p>
 
-                <h5><%= @user.name %></h5>
-                <%= @user.email %>
-
-                <div>
-                    <% unless current_user?(@user) %>
-                        <div id="follow-form">
-                        <% if current_user.following?(@user) %>
-                            <%= render 'unfollow' %>
-                        <% else %>
-                            <%= render 'follow' %>
+                    <div>
+                        <% unless current_user?(@user) %>
+                            <div id="follow-form">
+                            <% if current_user.following?(@user) %>
+                                <%= render 'unfollow', object: @user.id %>
+                            <% else %>
+                                <%= render 'follow', object: @user.id %>
+                            <% end %>
+                            </div>
                         <% end %>
-                        </div>
-                    <% end %>
-                </div>
-              <br>
+                    </div>
+                <hr>
 <!-- number of following and followed 　-->
                     <div class="stats">
                         <strong id="following" class="stat">
                         <%= @user.following.count %>
                         </strong>
                         Following
-
+                        
                         <strong id="followers" class="stat">
                         <%= @user.followers.count %>
                         </strong>
                         Followers
                     </div>
+                <hr>
 <!-- learned words -->
+            <%= "Learned Words" %>
             </div>
         </div>
     </div>
-
+<!-- Activity Feed -->
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header"><%= "Activity Feed" %></div>
@@ -50,3 +52,4 @@
     </div>
 
 </div>
+
