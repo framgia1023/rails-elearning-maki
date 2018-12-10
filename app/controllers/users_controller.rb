@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             flash[:success] = "Welcome to Framgia E-Learning System!"
-            redirect_to root_url
+            redirect_to new_user_url
         else
             render 'new'
         end

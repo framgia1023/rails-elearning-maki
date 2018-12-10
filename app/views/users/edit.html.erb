@@ -5,13 +5,14 @@
             <hr />
             <%= form_for @user do |f| %>
                 <%= render 'shared/error_messages', object: f.object %>
+                <div class="text-center">
                 <% if @user.picture? %>
                     <%= image_tag @user.picture.url, class: "br-max" %>
                 <% else%>
-                    <%= image_tag 'default.jpg' %>
+                    <%= image_tag 'default.jpg', class: "br-max" %>
                 <% end %>
-
-                <%= f.file_field :picture, autocomplete: "image", :multipart => true %>
+                </div>
+                <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
 
                 <div class="form-group">
                     <%= f.label :name %>
