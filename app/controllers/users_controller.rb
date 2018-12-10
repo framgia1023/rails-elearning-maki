@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :require_login, except: [:new, :create]
+    before_action :require_admin, only: :destroy
+    
     
     def new
         @user = User.new
@@ -20,7 +22,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.paginate(page: params[:page], per_page: 10)
+        @users = User.paginate(page: params[:page], per_page: 8).order('created_at DESC')
     end
 
     def edit
@@ -56,5 +58,11 @@ class UsersController < ApplicationController
         end
     end
         
+    def require_admin
+        unless current_user.admin?
+            flash[:danger] = "Only administrators can delete!"
+            redirect_to root_url
+        end
+    end
 
 end

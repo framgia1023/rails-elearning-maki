@@ -13,6 +13,11 @@
             <% end %>
         </li>
         <li class="nav-item">
+            <%= link_to new_admin_category_path, class: 'nav-link' do %>
+            <i class="fas fa-list-ul"></i> Categories
+            <% end %>
+        </li>
+        <li class="nav-item">
             <%= link_to users_path, class: 'nav-link'  do %>
             <i class="fas fa-users"></i> Members
             <% end %>
@@ -24,7 +29,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "Logout", user_path(current_user), method: :delete, class: "dropdown-item" %>
+                <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %>
             <div class="dropdown-divider">
             </div>
                 <a class="dropdown-item" href="#">Coming soon here...</a>
@@ -53,6 +58,7 @@
             <% end %>
         </li>
         <% end %>
+        
         </ul>
         
         <form class="form-inline my-2 my-lg-0">

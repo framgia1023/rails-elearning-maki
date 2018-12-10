@@ -1,30 +1,33 @@
-<h1 class='text-center border-bottom p-4 mb-3'>Users</h1>
+<h3 class='text-center border-bottom p-3 mb-3'>Members</h3>
 
 <div class='row'>
     <% @users.each do |user| %>
-        <div class='col-lg-6'>
-            <div class='media mb-3'>
-                <% if user.picture? %>
-                    <%= image_tag user.picture.url, class: 'pic-list' %>
-                <% else %>
-                    <%= image_tag 'default.jpg', class: "pic-list" %>
-                <% end %>
-                <div class="media-body">
-                    <h4><%= link_to user.name, user %></h4>
-                    
-                    <% if current_user?(user) %>
-                        <%= link_to "Update", edit_user_path(user), class: 'btn btn-info' %>
+        <div class="col-sm-3">
+            <div class="card bg-light mb-3" style="max-width: 15rem;">
+                <div class="card-body text-center">
+                    <% if user.picture? %>
+                        <%= image_tag user.picture.url, class: 'pic' %>
+                    <% else %>
+                        <%= image_tag 'default.jpg', class: "pic" %>
                     <% end %>
-
-                    <% if current_user.admin? && !current_user?(user) %>
-                        <%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-danger' %>
-                    <% end %> 
+                    <p></p>
+                    <h6 class="card-title"><%= link_to user.name, user, style: "color:navy;" %></h6>
+                    <p></p>
+                    <% unless current_user?(user) %>
+                            <div id="follow-form">
+                            <% if current_user.following?(user) %>
+                                <%= render 'unfollow', object: user.id %>
+                            <% else %>
+                                <%= render 'follow', object: user.id %>
+                            <% end %>
+                            </div>
+                    <% end %>
                 </div>
             </div>
         </div>
     <% end %>
 </div>
 
-<div class="text-center border-top pt-3">
+<div class="border-top pt-3">
         <%= will_paginate %>
 </div> 
