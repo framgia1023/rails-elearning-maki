@@ -11,7 +11,7 @@
                         <%= image_tag 'default.jpg', class: "pic" %>
                     <% end %>
                     <p></p>
-                    <h6 class="card-title"><%= link_to user.name, user, style: "color:#007acc;" %></h6>
+                    <h6 class="card-title"><%= link_to user.name, user, class: "bluetext" %></h6>
                     <p></p>
                     <% unless current_user?(user) %>
                             <div id="follow-form">
