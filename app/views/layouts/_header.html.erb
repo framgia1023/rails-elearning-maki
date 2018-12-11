@@ -13,8 +13,8 @@
             <% end %>
         </li>
         <li class="nav-item">
-            <%= link_to new_admin_category_path, class: 'nav-link' do %>
-            <i class="fas fa-list-ul"></i> Categories
+            <%= link_to "#", class: 'nav-link' do %>
+            <i class="fas fa-book-open"></i> Categories
             <% end %>
         </li>
         <li class="nav-item">
@@ -30,9 +30,12 @@
                 <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item" %>
-            <div class="dropdown-divider">
-            </div>
-                <a class="dropdown-item" href="#">Coming soon here...</a>
+                
+                <% if current_user.admin? %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Category Management", admin_categories_path, class: "dropdown-item" %>
+                <%= link_to "User Management", "#", method: :delete, class: "dropdown-item" %>
+                <% end %>
             </div>
         </li>
 

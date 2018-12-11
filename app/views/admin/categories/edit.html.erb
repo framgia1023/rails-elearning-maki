@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-7 offset-lg-3">
         <div class="card" style="width: 33rem;">
             <div class="card-body">
-                <h3 class="card-title text-center">Category Registration</h3>
+                <h3 class="card-title text-center">Edit Category</h3>
                     <%= form_for [:admin, @category] do |f| %>
                             <%= render 'shared/error_messages', object: f.object %>
                             <div class="form-group">
@@ -15,7 +15,7 @@
                             </div>
                             
                             <%= link_to "Go Back", admin_categories_path, class: 'btn btn-outline-secondary'%>
-                            <%= f.submit "Save Category", class: 'btn btn-primary btn-fluid' %>
+                            <%= f.submit "Update Category", class: 'btn btn-primary btn-fluid' %>
                     <% end %>
             </div>
         </div>
