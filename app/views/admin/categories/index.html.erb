@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">       
         <h3> Admin | Categories 
-        <%= link_to "Add Category", new_admin_category_path, class: "btn btn-outline-info float-right" %>
+        <%= link_to "Add Category", new_admin_category_path, class: "btn btn-info float-right" %>
         </h3>
     </div>
         <table class="table table-hover">
@@ -18,9 +18,9 @@
             <tbody>
                 <% @categories.each do |category| %>
                     <tr>
-                    <td><%= link_to category.title, admin_category_path(category), class: "bluetext" %></td>
+                    <td><%= link_to category.title, admin_category_words_path(category), class: "bluetext" %></td>
                     <td><%= category.description %></td>
-                    <td></td>
+                    <td><%= category.words.count %></td>
                     <td>
                         <%= link_to edit_admin_category_path(category), class: "text-muted" do %>
                             <i class="fas fa-edit"></i>
