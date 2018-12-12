@@ -23,6 +23,9 @@ before_action :find_category
 
   def edit
     @word = @category.words.find(params[:id])
+    3.times  {
+      @word.choices
+    }
   end
 
   def update
