@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :categories, only: [:index]
   namespace :admin do
+    resources :users, only: [:index] do
+      member do
+        get :set_admin
+        get :remove_admin
+      end
+    end
     resources :categories do
       resources :words
     end
