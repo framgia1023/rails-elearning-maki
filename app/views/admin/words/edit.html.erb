@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-lg-6 offset-lg-2">
+        <div class="card" style="width: 42rem;">
+            <div class="card-body">
+
+                <h3 class="card-title text-center">Edit Words</h3>
+                    <%= form_for [:admin, @category, @word] do |f| %>
+                            <%= render 'shared/error_messages', object: f.object %>
+                            <div class="form-group">
+                                <%= f.label :word %>
+                                <%= f.text_field :word, class: 'form-control', placeholder: 'Word' %>
+                            </div>
+
+
+                            <%= "Choices" %>   
+                             <%= f.fields_for :choices  do |c| %>
+                                <div class="form-inline">
+                                    <div class="form-group">                            
+                                        <%= c.text_field :choice, class:'form-control', style: "width:500px;", placeholder: "Choice" %>
+                                    </div>
+                                    <div class="form-check col-md-2 my-3">
+                                        <%= c.label :correct %>
+                                        <%= c.check_box :correct %>
+                                    </div>
+                                </div>
+                            <% end %>
+
+                            <p></p>
+                            <%= link_to "Go Back", admin_category_words_path(@category), class: 'btn btn-outline-secondary', style: "width:200px;"%>
+                            <%= f.submit "Update Words", class: 'btn btn-info', style: "width:420px;" %>
+                    <% end %>
+            </div>
+        </div>
+    </div>
+</div>

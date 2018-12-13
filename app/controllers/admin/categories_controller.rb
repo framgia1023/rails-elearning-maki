@@ -20,6 +20,7 @@ class Admin::CategoriesController < AdminController
 
     def index
       @categories = Category.paginate(page: params[:page], per_page: 10).order('created_at DESC')
+      
     end
 
     def edit
