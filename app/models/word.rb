@@ -17,9 +17,7 @@ class Word < ApplicationRecord
     private
 
     def check_choice
-        correct = choices.collect do |c|
-            c.correct
-        end
+        correct = choices.collect { |c| c.correct || nil}.compact
         if correct.compact.size == 0
         #もし一つしか選んでなかったら、array{true, nil nil}になる
         errors.add(:base, 'You must select at least one answer') 
