@@ -4,11 +4,12 @@ class Word < ApplicationRecord
     has_many :choices, dependent: :destroy
     accepts_nested_attributes_for :choices
 
-    has_many :answers
-
     validates :category_id, presence: true
     validates :word, presence: true, length: { maximum: 30 }
     validate :check_choice
+
+    has_many :answers, dependent: :destroy
+    has_many :lessons, through: :answers
 
     def correct_answer
         choices.find_by(correct: true)  

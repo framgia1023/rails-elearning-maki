@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-lg-4 offset-lg-3">
+        <h1><%= @category.title %></h1>
+        <h4><%= @lesson.current_number %> of <%= @category.words.count %></h4>
+    
+    
+        <div class="card bg-light" style="width: 34rem;">
+            <div class="card-body">
+                <h1 class="card-title text-center"><strong><%= @lesson.next_word.word %></strong></h1>
+                <br>
+                <% @choices.each do |choice| %>
+                    <%= form_for [:lesson, @lesson.answers.build] do |f| %>
+                        <div class="form-group">   
+                        <div><%= hidden_field_tag :choice_id, choice.id %></div>   
+                        <div><%= hidden_field_tag :word_id, @lesson.next_word.id %></div>
+                        <%= f.submit choice.choice, class: 'btn btn-outline-dark btn-lg btn-block' %>
+                        </div>   
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
