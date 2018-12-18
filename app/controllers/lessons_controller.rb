@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
     def create
         @lesson = Lesson.new(lesson_params)
         @lesson.save
-        redirect_to new_lesson_answer_path(@lesson)
+        redirect_to new_lesson_answer_path(@lesson)    
     end
         
 

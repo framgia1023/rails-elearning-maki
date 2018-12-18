@@ -18,7 +18,7 @@
                 <tbody>
                 <%  @words.zip(@choices).each do |word, choice| %>
                 <tr>
-                <td><%= word.word  %></td>
+                <td><%= word.word %></td>
                 <td><%= word.correct_answer.choice %></td>
                 <td><%= choice.choice %></td>
                 <td>

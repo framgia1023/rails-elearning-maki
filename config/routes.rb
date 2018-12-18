@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: :create
   resources :relationships, only: [:create, :destroy]
-  resources :categories, only: [:index] do
-  end
-
+  resources :categories, only: [:index] 
   resources :lessons, only: [:show, :create] do
     resources :answers, only: [:new, :create]
   end
