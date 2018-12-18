@@ -1,7 +1,11 @@
 class LessonsController < ApplicationController
 
     def show
-
+        @lesson = Lesson.find(params[:id])
+        @category = Category.find_by(id: @lesson.category_id)
+        @words = @lesson.words.all
+        @choices = @lesson.choices.all
+       
     end
 
     def create
