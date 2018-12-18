@@ -16,9 +16,12 @@
                 <h6 class="card-subtitle mb-2 text-muted"><%= category.description %></h6>
                   
                 <p></p>
-                <%= link_to "#", class:'btn btn-secondary float-right' do %>    
-                <i class="fas fa-eye"></i>Show Results
+                
+                <%= form_for @lesson do |f| %>
+                  <div><%= hidden_field_tag :category_id, category.id %></div>    
+                  <%= f.submit "Learn", class: 'btn btn-secondary float-right' %>
                 <% end %>
+
               </div>
             </div>
           </div>

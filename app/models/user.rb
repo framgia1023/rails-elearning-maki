@@ -12,6 +12,11 @@ class User < ApplicationRecord
 
     mount_uploader :picture, PictureUploader
 
+    #User -< Lesson >- Category
+    has_many :lessons, dependent: :destroy
+    has_many :categories, through: :lessons
+
+    #User -< Relationship
     has_many :active_relationships,  class_name: 'Relationship',
                                      foreign_key: 'follower_id',
                                      dependent: :destroy

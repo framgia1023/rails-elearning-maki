@@ -7,13 +7,13 @@ class Admin::UsersController < AdminController
   def set_admin
     user = User.find(params[:id])
     user.update(admin: '1')
-    redirect_to admin_users_path
+    redirect_to request.referer
   end
 
   def remove_admin
     user = User.find(params[:id])
     user.update(admin: '0')
-    redirect_to admin_users_path
+    redirect_to request.referer
   end
 
 end
