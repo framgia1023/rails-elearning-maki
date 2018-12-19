@@ -5,6 +5,7 @@
   <%= link_to "Unlearned", "#", class: "btn btn-outline-info" %>
 </div>
 </div>
+
 <div class="container">
   <div class="row">
       <% @categories.each do |category| %>
@@ -12,16 +13,33 @@
             <div class="card bg-light mb-4" style="width: 32rem; height: 165px;">
               <div class="card-body">
                 <h4 class:="card-title"><%= category.title %></h4>
-                <p></p>
-                <h6 class="card-subtitle mb-2 text-muted"><%= category.description %></h6>
-                  
-                <p></p>
-                
-                <%= form_for @lesson do |f| %>
-                  <div><%= hidden_field_tag :category_id, category.id %></div>    
-                  <%= f.submit "Learn", class: 'btn btn-secondary float-right' %>
-                <% end %>
 
+                <div class="card-subtitle mb-2 text-muted">
+                <%= category.description %>
+                <% unless  check_learn(category).nil? || check_learn(category).result.nil?  %>
+                    <div class="float-right mt-1">Learned <%= check_learn(category).result %> of <%= category.words.count %></div>
+                <% end %>
+               </div>
+
+                <% if check_learn(category).nil?  %>
+                  <%= form_for @lesson do |f| %>
+                    <div><%= hidden_field_tag :category_id, category.id %></div>    
+                    <%= button_tag type: 'submit', class: "btn btn-info float-right mt-4", id: "register-button", style: "width:140px;" do %>
+                      <i class="fas fa-book"></i>  Let's Start!
+                    <% end %>
+                  <% end %>
+
+                <% elsif check_learn(category).result.nil? %>
+                  <%= link_to new_lesson_answer_path(check_learn(category).id), class: 'btn btn-info float-right mt-4', style: "width:140px;" do %>
+                   <i class="fas fa-book"></i>   Let's Start!
+                  <% end %>
+
+                <% else %>
+                  <%= link_to lesson_path(check_learn(category).id), class: 'btn btn-secondary float-right mt-4 mb-2', style: "width:140px;" do %>
+                  <i class="fas fa-eye"></i>  Show Result
+                  <% end %>
+
+                <% end %>
               </div>
             </div>
           </div>

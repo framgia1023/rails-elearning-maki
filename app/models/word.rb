@@ -15,6 +15,7 @@ class Word < ApplicationRecord
         choices.find_by(correct: true)  
     end
 
+
     private
 
     def check_choice
