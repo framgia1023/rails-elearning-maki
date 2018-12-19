@@ -19,6 +19,8 @@ def correct_choice
     choices.where(correct: true).count
 end
 
+
+
 #このメソッドをここに入れるのは直接lessonからdirectにもらえるからだって、、
 
 end

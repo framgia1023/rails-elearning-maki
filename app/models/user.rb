@@ -15,6 +15,7 @@ class User < ApplicationRecord
     #User -< Lesson >- Category
     has_many :lessons, dependent: :destroy
     has_many :categories, through: :lessons
+    has_many :answers, through: :lessons
 
     #User -< Relationship
     has_many :active_relationships,  class_name: 'Relationship',
@@ -40,5 +41,9 @@ class User < ApplicationRecord
 
     def following?(other_user)
         following.include?(other_user)
+    end
+
+    def learned_word
+        lessons.sum(:result)
     end
 end

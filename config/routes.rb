@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
-  resources :users
+  resources :users do
+    resources :words, only: [:index]
+  end
+
   resources :sessions, only: :create
   resources :relationships, only: [:create, :destroy]
   resources :categories, only: [:index] 
