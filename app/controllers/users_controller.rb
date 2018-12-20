@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        # @lesson = Lesson.find_by(user_id: @user)
+        @lesson = @user.lessons
     end
 
     def index
@@ -45,6 +47,7 @@ class UsersController < ApplicationController
         @user.destroy
         redirect_to users_url
     end
+
 
     private
     def user_params

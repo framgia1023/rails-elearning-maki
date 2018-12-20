@@ -38,6 +38,9 @@
                 <hr>
 <!-- learned words -->
             <%= "Learned Words" %>
+            <div>
+                <%=link_to @user.learned_word, user_words_path(@user)  %>
+            </div>
             </div>
         </div>
     </div>
