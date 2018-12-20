@@ -21,6 +21,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         # @lesson = Lesson.find_by(user_id: @user)
         @lesson = @user.lessons
+        @activities = Activity.where(user_id: @user, action_type: "Lesson").paginate(page: params[:page], per_page: 8).order('created_at DESC')
     end
 
     def index
@@ -46,6 +47,20 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @user.destroy
         redirect_to users_url
+    end
+
+    def following
+        @user = User.find(params[:id])
+        @lesson = Lesson.find_by(user_id: @user)
+        @users = @user.following
+        render 'show_follow'
+    end
+
+    def followers
+        @user = User.find(params[:id])
+        @lesson = Lesson.find_by(user_id: @user)
+        @users = @user.followers
+        render 'show_follower'
     end
 
 

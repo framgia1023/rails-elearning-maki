@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card mb-6">
+            <div class="card-body text-center">
+                <% if current_user.picture? %>
+                    <%= image_tag current_user.picture.url, class: 'pic-list' %>
+                <% else %>
+                    <%= image_tag 'default.jpg', class: 'pic-list' %>
+                <% end %>
+                <p></P>
+                    <h5><%= current_user.name %></h5>
+                    <p><%= current_user.email %></p>
+
+                <hr>
+<!-- number of following and followed 　-->
+                    <div class="d-inline mr-4"><%= "Following" %></div>
+                    <div class="d-inline ml-3"><%= "Followers" %></div>
+                    <div>
+                        <strong id="following">
+                        <%=link_to current_user.following.count, following_user_path(current_user), class: "mr-5" %>
+                        </strong>
+                        
+                        <strong id="followers">
+                        <%=link_to current_user.followers.count, followers_user_path(current_user), class: "ml-5" %>
+                        </strong>
+                    </div>
+                <hr>
+<!-- learned words -->
+            <%= "Learned Words" %>
+            <div>
+             <strong><%=link_to current_user.learned_word, user_words_path(current_user) %></strong>
+            </div>
+            </div>
+        </div>
+    </div>
+<!-- Activity Feed -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header"><%= "Activity Feed" %></div>
+            <div class="card-body">
+                <% if @lesson.nil?  %>
+                <div class="text-muted">Nothing to show.</div>
+                <% else %>
+                
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+</div>

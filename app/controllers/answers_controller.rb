@@ -16,6 +16,7 @@ class AnswersController < ApplicationController
       redirect_to new_lesson_answer_url(@lesson)
     else
       @lesson.update(result: @lesson.correct_choice)
+      @lesson.create_activity(user: current_user)
       redirect_to lesson_path(@lesson)
     end
     

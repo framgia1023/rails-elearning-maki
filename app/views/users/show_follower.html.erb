@@ -24,7 +24,7 @@
                     </div>
                 <hr>
 <!-- number of following and followed 　-->
-                    <div class="d-inline mr-4"><%= "Following" %></div>
+                   <div class="d-inline mr-4"><%= "Following" %></div>
                     <div class="d-inline ml-3"><%= "Followers" %></div>
                     <div>
                         <strong id="following">
@@ -39,7 +39,7 @@
 <!-- learned words -->
             <%= "Learned Words" %>
             <div>
-                <strong><%=link_to @user.learned_word, user_words_path(@user)  %></strong>
+            <strong><%=link_to @user.learned_word, user_words_path(@user)  %></strong>
             </div>
             </div>
         </div>
@@ -47,43 +47,44 @@
 <!-- Activity Feed -->
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header"><%= "Activity Feed" %></div>
+            <div class="card-header">
+            <%= "Followers" %>
+            <%= link_to "Go Back", user_path(@user), class: "btn btn-info float-right" %>
+            </div>
             <div class="card-body">
-                <% if @activities.nil?  %>
-                <div class="text-muted">Nothing to show.</div>
-                <% else %>
-                 <ul class="list-unstyled">
-                     <% @activities.each do |activity| %>
-                        <li class="media mb-4">
-                        <div class="mr-2">
-                            <% if @user.picture? %>
+            <% if @user.followers.any? %>
+                <table class="table">
+                <tbody>
+                <% @user.followers.each do |user| %>
+                <tr>
+                    <td> 
+                        <% if user.picture? %>
                             <%= image_tag user.picture.url, class: 'small-pic' %>
-                            <% else %>
+                        <% else %>
                             <%= image_tag 'default.jpg', class: "small-pic" %>
-                            <% end %> 
+                        <% end %>
+                    </td>
+                    <td> <%= link_to user.name, user, class: "bluetext" %> </td>
+                    <td>
+                    <% unless current_user?(user) %>
+                        <div id="follow-form">
+                        <% if current_user.following?(user) %>
+                            <%= render 'unfollow', object: user.id %>
+                        <% else %>
+                            <%= render 'follow', object: user.id %>
+                        <% end %>
                         </div>
-                        <div class="media-body">
-                            <%= link_to activity.user.name, user_path(@user) %>
-                            learned
-                            <%= activity.action.result %>
-                            of
-                            <%= activity.action.category.words.count %>
-                            in
-                            <%= link_to activity.action.category.title, lesson_path(activity.action.id)  %>
-                            <div>
-                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %> ago</small>
-                            </div>
-                        </div>
-                        </li>
                     <% end %>
-                </ul>
-                 <div class="text-center border-top pt-3">
-                    <%= will_paginate @activities %>
-                </div>
+                    </td>
+                </tr>
                 <% end %>
+                </tbody>
+                </table>
+            <% else %>
+                <div class="text-muted">No Followers.</div>
+            <% end %>
             </div>
         </div>
     </div>
 
 </div>
-

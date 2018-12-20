@@ -6,5 +6,7 @@ class Category < ApplicationRecord
 #User -< Lesson >- Category
     has_many :lessons, dependent: :destroy
     has_many :users, through: :lessons
+
+#Category -< Lesson -< Answer
     has_many :answers, through: :lessons
 end
