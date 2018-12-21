@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+     #User -< Activity
+    has_many :activities
+    has_many :activities, as: :action, dependent: :destroy
+
     validates :name, presence: true, length: { maximum: 25, minimum: 2 }
 
     before_save { email.downcase! }
@@ -15,7 +19,10 @@ class User < ApplicationRecord
     #User -< Lesson >- Category
     has_many :lessons, dependent: :destroy
     has_many :categories, through: :lessons
+
+    #User -< Lesson -< Answer
     has_many :answers, through: :lessons
+
 
     #User -< Relationship
     has_many :active_relationships,  class_name: 'Relationship',
@@ -46,4 +53,6 @@ class User < ApplicationRecord
     def learned_word
         lessons.sum(:result)
     end
+
+    
 end

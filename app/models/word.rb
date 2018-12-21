@@ -9,6 +9,7 @@ class Word < ApplicationRecord
     validate :check_choice
 
     has_many :answers, dependent: :destroy
+    #Word -< Answer >- Lesson
     has_many :lessons, through: :answers
 
     def correct_answer

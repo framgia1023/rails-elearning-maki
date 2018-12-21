@@ -13,22 +13,22 @@
 
                 <hr>
 <!-- number of following and followed 　-->
-                    <div class="stats">
-                        <strong id="following" class="stat">
-                        <%= @user.following.count %>
+                    <div class="d-inline mr-4"><%= "Following" %></div>
+                    <div class="d-inline ml-3"><%= "Followers" %></div>
+                    <div>
+                        <strong id="following">
+                        <%=link_to @user.following.count, following_user_path(@user), class: "mr-5" %>
                         </strong>
-                        Following
                         
-                        <strong id="followers" class="stat">
-                        <%= @user.followers.count %>
+                        <strong id="followers">
+                        <%=link_to @user.followers.count, followers_user_path(@user), class: "ml-5" %>
                         </strong>
-                        Followers
                     </div>
                 <hr>
 <!-- learned words -->
             <%= "Learned Words" %>
             <div>
-                <%=link_to @user.learned_word, user_words_path(@user)  %>
+                <strong><%=link_to @user.learned_word, user_words_path(@user)  %></strong>
             </div>
             </div>
         </div>
