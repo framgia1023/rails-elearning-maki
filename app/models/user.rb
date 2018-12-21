@@ -1,7 +1,6 @@
 class User < ApplicationRecord
      #User -< Activity
     has_many :activities
-    has_many :activities, as: :action, dependent: :destroy
 
     validates :name, presence: true, length: { maximum: 25, minimum: 2 }
 
@@ -54,5 +53,10 @@ class User < ApplicationRecord
         lessons.sum(:result)
     end
 
-    
+    def dashboard_feed
+        following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+        Activity.where("user_id IN (#{ following_ids }) OR user_id = :user_id",
+                        following_ids: following_ids, user_id: id)
+    end
 end

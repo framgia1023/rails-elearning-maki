@@ -19,9 +19,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        # @lesson = Lesson.find_by(user_id: @user)
-        @lesson = @user.lessons
-        @activities = Activity.where(user_id: @user, action_type: "Lesson").paginate(page: params[:page], per_page: 8).order('created_at DESC')
+        @activities = @user.activities.paginate(page: params[:page], per_page: 8).order('created_at DESC')
     end
 
     def index

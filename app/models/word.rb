@@ -34,10 +34,8 @@ class Word < ApplicationRecord
     #.compact
     #.size
     #.count == 1
-    # if choice.any? /choice.count?
-      
+    # if choice.any? /choice.count?      
     # elsif
-
     # end
 
 end

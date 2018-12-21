@@ -38,13 +38,45 @@
         <div class="card">
             <div class="card-header"><%= "Activity Feed" %></div>
             <div class="card-body">
-                <% if @lesson.nil?  %>
+                <% if @activities.nil?  %>
                 <div class="text-muted">Nothing to show.</div>
                 <% else %>
-                
+                 <ul class="list-unstyled">
+                     <% @activities.each do |activity| %>
+                        <li class="media mb-4">
+                        <div class="mr-2">
+<!-- User's Image -->
+                            <% if activity.user.picture? %>
+                            <%= image_tag activity.user.picture.url, class: 'small-pic' %>
+                            <% else %>
+                            <%= image_tag 'default.jpg', class: "small-pic" %>
+                            <% end %> 
+                        </div>
+<!-- Activity Content (Lesson/User) -->
+                        <div class="media-body">
+                            <% if activity.action_type == "Lesson" %>
+                                <%= link_to activity.user.name, user_path(activity.user.name) %> learned
+                                <%= activity.action.result %> of <%= activity.action.category.words.count %>
+                                in <%= link_to activity.action.category.title, lesson_path(activity.action.id)  %>
+                            <% else %>
+                                <%= link_to activity.user.name, user_path(activity.user.id) %> 
+                                followed
+                                <%= link_to followed(activity.action.followed_id).name, user_path(activity.action.follower_id) %> 
+                            <% end %>
+                            <div>
+                            <small class="text-muted"><%= time_ago_in_words(activity.created_at) %> ago</small>
+                            </div>
+                        </div>
+                        </li>
+                    <% end %>
+                </ul>
+                 <div class="text-center border-top pt-3">
+                    <%= will_paginate @activities %>
+                </div>
                 <% end %>
             </div>
         </div>
     </div>
 
 </div>
+

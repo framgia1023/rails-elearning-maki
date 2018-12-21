@@ -12,14 +12,16 @@
                             </div>
 
 
-                            <%= "Choices" %>   
+                            <%= "Choices" %>
                              <%= f.fields_for :choices  do |c| %>
                                 <div class="form-inline">
                                     <div class="form-group">                            
                                         <%= c.text_field :choice, class:'form-control', style: "width:500px;", placeholder: "Choice" %>
                                     </div>
-                                    <div class="form-check col-md-2 my-3">
+                                    <div class="form-check col-md-2 my-3 ml-3">
+                                        <div class="mr-3">
                                         <%= c.label :correct %>
+                                        </div>
                                         <%= c.check_box :correct %>
                                     </div>
                                 </div>
