@@ -1,6 +1,7 @@
-class DashboardController < AdminController
+class DashboardController < ApplicationController
 
     def index
-        @lesson = Lesson.find_by(user_id: current_user)
+        @activities = current_user.dashboard_feed.paginate(page: params[:page], per_page: 8).order('created_at DESC')
     end
+
 end
