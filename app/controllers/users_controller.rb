@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.paginate(page: params[:page], per_page: 8).order('created_at DESC')
+        @users = User.search(params[:search]).paginate(page: params[:page], per_page: 8).order('created_at DESC')
     end
 
     def edit
@@ -60,7 +60,6 @@ class UsersController < ApplicationController
         @users = @user.followers
         render 'show_follower'
     end
-
 
     private
     def user_params
