@@ -59,4 +59,13 @@ class User < ApplicationRecord
         Activity.where("user_id IN (#{ following_ids }) OR user_id = :user_id",
                         following_ids: following_ids, user_id: id)
     end
+
+    def self.search(search) 
+        if search
+          where(['name LIKE ?', "%#{search}%"]) 
+        else
+          all 
+        end
+    end
+    
 end
