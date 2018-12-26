@@ -1,8 +1,8 @@
 <h2 class='text-center'>Categories</h2>
 <div class="btn-group float-right">
-  <%= link_to "All", categories_path, class: "btn btn-outline-info" %>
-  <%= link_to "Learned", categories_path(status: "learned"), class: "btn btn-outline-info" %>
-  <%= link_to "Unlearned", categories_path(status: "unlearned"), class: "btn btn-outline-info" %>
+  <%= link_to "All", categories_path, class: "btn btn-outline-info #{'active' if params[:status].nil?}" %>
+  <%= link_to "Learned", categories_path(status: "learned"), class: "btn btn-outline-info #{'active' if params[:status]=="learned"}" %>
+  <%= link_to "Unlearned", categories_path(status: "unlearned"), class: "btn btn-outline-info #{'active' if params[:status]=="unlearned"}" %>
 </div>
 </div>
 

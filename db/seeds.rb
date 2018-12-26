@@ -22,3 +22,4 @@ User.create(
         password: 'password'
     )
 end
+
