@@ -8,4 +8,5 @@ class Answer < ApplicationRecord
     #Answer >- Lesson >- User 
     has_many :users, through: :lesson
 
+
 end

@@ -53,6 +53,10 @@ class User < ApplicationRecord
         lessons.sum(:result)
     end
 
+    def learned_words
+        categories.where.not(lessons: {result: nil})
+    end
+
     def dashboard_feed
         following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
