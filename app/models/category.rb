@@ -9,4 +9,6 @@ class Category < ApplicationRecord
 
 #Category -< Lesson -< Answer
     has_many :answers, through: :lessons
+
+
 end

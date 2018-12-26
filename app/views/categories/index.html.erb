@@ -1,13 +1,16 @@
 <h2 class='text-center'>Categories</h2>
 <div class="btn-group float-right">
   <%= link_to "All", categories_path, class: "btn btn-outline-info" %>
-  <%= link_to "Learned", "#", class: "btn btn-outline-info" %>
-  <%= link_to "Unlearned", "#", class: "btn btn-outline-info" %>
+  <%= link_to "Learned", categories_path(status: "learned"), class: "btn btn-outline-info" %>
+  <%= link_to "Unlearned", categories_path(status: "unlearned"), class: "btn btn-outline-info" %>
 </div>
 </div>
 
 <div class="container">
   <div class="row">
+    <% if !@categories.any? %>
+      <h4 class="text-muted float-center"><%="Nothing to show"%></h4>
+    <% else %>
       <% @categories.each do |category| %>
           <div class="col-md-6">
             <div class="card bg-light mb-4" style="width: 32rem; height: 165px;">
@@ -44,6 +47,7 @@
             </div>
           </div>
       <% end %>
+    <% end %>
   </div>
 </div>
 
