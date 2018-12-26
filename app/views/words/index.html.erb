@@ -43,15 +43,15 @@
             </div>
 <!-- Learned Words List -->
             <div class="card-body">
-                 <% if !@lessons.any? %>
+                 <% unless @lessons.any? %>
                     <div class="text-muted">Nothing to show.</div>
                 <% else %>
 <!-- Select Tag -->
                     <div>
                         <%= form_tag(user_words_path, method: 'get') do %>
                         <%= label_tag :title, "Category" %>
-                        <%= select_tag "title", options_for_select(@select), include_blank: @category %>
-                        <%= submit_tag :search %>
+                        <%= select_tag "title", options_for_select(@select), prompt: @category, onchange: 'this.form.submit()' %>
+                        <%#= submit_tag :search %>
                         <% end %>  
                     </div>
                     <table class="table table-hover">
