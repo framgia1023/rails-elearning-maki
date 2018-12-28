@@ -7,16 +7,28 @@
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+       <link href="https://fonts.googleapis.com/css?family=Lato:100|Montserrat:800|Crete+Round:400i" rel="stylesheet">
+
+        <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            }
+        </style>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
     </head>
 
     <body>
         <%= render 'layouts/header' %>
-        <%= render 'shared/flash_messages' %>
-            <div class="container p-5">
-                <%= yield %>
+            <div class="wrapper cover-img" style='<%= "background-image: url(/assets/bgimage.png);" unless current_page?(root_path) %>' >
+             <%= render 'shared/flash_messages' %>
+        <div class= '<%= "container p-5" unless current_page?(root_path) %>' >
+    <%= yield %>
+        </div>
+        <%#= debug session[:user_id] if Rails.env =='development' %>
+        <div class="push"></div>
             </div>
-        <%= debug session[:user_id] if Rails.env =='development' %>
+        <footer class="footer">
         <%= render 'layouts/footer' %>
+        </footer>
     </body>
 </html>

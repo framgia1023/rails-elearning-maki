@@ -17,18 +17,18 @@
                     <div class="d-inline ml-3"><%= "Followers" %></div>
                     <div>
                         <strong id="following">
-                        <%=link_to current_user.following.count, following_user_path(current_user), class: "mr-5" %>
+                        <%=link_to current_user.following.count, following_user_path(current_user), class: "mr-5 text-warning" %>
                         </strong>
                         
                         <strong id="followers">
-                        <%=link_to current_user.followers.count, followers_user_path(current_user), class: "ml-5" %>
+                        <%=link_to current_user.followers.count, followers_user_path(current_user), class: "ml-5 text-warning" %>
                         </strong>
                     </div>
                 <hr>
 <!-- learned words -->
             <%= "Learned Words" %>
             <div>
-             <strong><%=link_to current_user.learned_word, user_words_path(current_user) %></strong>
+             <strong><%=link_to current_user.learned_word, user_words_path(current_user), class: "text-warning" %></strong>
             </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 <!-- Activity Feed -->
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header"><%= "Activity Feed" %></div>
+            <h5 class="card-header bg-light"><%= "ACTIVITY" %></h5>
             <div class="card-body">
                 <% if @activities.nil?  %>
                 <div class="text-muted">Nothing to show.</div>
@@ -55,20 +55,20 @@
 <!-- Activity Content (Lesson/User) -->
                         <div class="media-body">
                             <% if activity.user_id == current_user.id %>
-                                <%= link_to "You", user_path(current_user) %> 
+                                <%= link_to "You", user_path(current_user), class: "text-warning"  %> 
                             <% else %>
-                                <%= link_to activity.user.name, user_path(activity.user.id) %> 
+                                <%= link_to activity.user.name, user_path(activity.user.id), class: "text-warning"  %> 
                             <% end %>
                             <% if activity.action_type == "Lesson" %>
                                 learned
                                 <%= activity.action.result %> of <%= activity.action.category.words.count %>
-                                in <%= link_to activity.action.category.title, lesson_path(activity.action.id)  %>
+                                in <%= link_to activity.action.category.title, lesson_path(activity.action.id), class: "text-warning"   %>
                             <% else %>
                                 followed
                                 <% if activity.action.followed_id == current_user.id %>
-                                <%= link_to "you", user_path(current_user) %>
+                                <%= link_to "you", user_path(current_user), class: "text-warning"  %>
                                 <% else %>
-                                <%= link_to followed(activity.action.followed_id).name, user_path(activity.action.followed_id) %> 
+                                <%= link_to followed(activity.action.followed_id).name, user_path(activity.action.followed_id), class: "text-warning"  %> 
                                 <% end %>
                             <% end %>
                             <div>
@@ -78,7 +78,7 @@
                         </li>
                     <% end %>
                 </ul>
-                 <div class="text-center border-top pt-3">
+                 <div class="mt-3">
                     <%= will_paginate @activities %>
                 </div>
                 <% end %>
