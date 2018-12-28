@@ -1,4 +1,108 @@
-<%= image_tag 'computer-1185626_1920.jpg', class: "img-fluid" %>
-<div align="center">
-    <h1>Framgia E-learning System<h1>
-</div>
+<main class="scroll-container">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="home" class="col-xs-12 cover-img" style="background-image: url(/assets/toppic.jpg);">
+                <div class="cover-text text-center text-white">
+                    <h1 class="creteround ">Framgia Elearning Service</h1>
+                    <h2 class="montserrat">Are you ready to join us?</h2>
+                    <%= link_to "GET STARTED", "#", href: "#signup", class: "btn btn-warning btn-lg text-white mt-2 scroll"  %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<section id="services"  style="background-color: white;">
+    <div class="col-xs-12 cover-img">
+    <div class="cover-text">
+        <div class="container mt-5 mb-5">
+            <div class="row mb-4">
+                <div class="col-lg-12 text-center mb-2">
+                   <h2 class="section-heading text-uppercase"><strong>About</strong></h2>
+                    <h3 class="section-subheading text-muted">What is Framgia Elearning Service?</h3>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x mb-3">
+                    <i class="fas fa-circle fa-stack-2x my-yellow"></i>
+                    <i class="fas fa-book-open fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading"><strong>Study Words</strong></h4>
+                    <p class="text-muted">Learning new language is always difficult. This application help you learn words of several languages. You can study using this service anywhere and anytime!</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x  mb-3">
+                    <i class="fas fa-circle fa-stack-2x my-yellow"></i>
+                    <i class="fas fa-users fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading"><strong>Share Activities With Users</strong></h4>
+                    <p class="text-muted">If you have friends to share your study progress, you can motivate each other. You can follow users who are using this elearning service and you can check their activities on the dashboard.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x mb-3">
+                    <i class="fas fa-circle fa-stack-2x my-yellow"></i>
+                    <i class="fas fa-pen fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading"><strong>Create Lessons</strong></h4>
+                    <p class="text-muted">Of course if you want to create new lessons, you can! To create new lessons, you need to send admin request to Maki and become admin. Contact information is below.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<% unless logged_in? %>
+<section id="signup" style="background-color: gray;">
+    <div class="col-xs-12 cover-img mt-5">
+        <div class="cover-text">
+            <div class="row mt-5">
+                <div class="col-lg-4 offset-lg-4">
+                    <div class= "container">
+                        <h2 class="text-center text-white">SIGN UP</h2>
+                        <hr />
+                        <%= form_for @user do |f| %>
+                            <%= render 'shared/error_messages', object: f.object %>
+                            <div class="form-group">
+                                <%= f.label :name, class: "text-white" %>
+                                <%= f.text_field :name, class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :email, class: "text-white" %>
+                                <%= f.text_field :email, class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :password, class: "text-white float-left d-inline" %>
+                                <p class="text-white float-left ml-2">(at least 6 characters)</p> 
+                                <%= f.password_field :password, class: 'form-control'  %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :password_confirmation, class: "text-white" %>
+                                <%= f.password_field :password_confirmation, class: 'form-control' %>
+                            </div>
+                            <%= f.submit "Submit", class: 'btn btn-warning btn-block text-white mt-4' %>
+                            <div class="mt-2">
+                            <%= link_to "Already have an account?", login_path, class: "my-yellow"%>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% else %>
+<% end %>
+</main>
+
+<script>
+$('.scroll').click(function(e){
+    var jump = $(this).attr('href');
+    var new_position = $(jump).offset();
+    $('html, body').stop().animate({ scrollTop: new_position.top }, 500);
+    e.preventDefault();
+});
+</script>

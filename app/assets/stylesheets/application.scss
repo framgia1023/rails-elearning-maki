@@ -1,4 +1,82 @@
 @import "bootstrap";
+
+//Fix the length of each page
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+  }
+
+.footer,
+.push {
+    height: 50px;
+  }
+
+
+// Home and Header
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+}
+
+.creteround-small{
+    font-family: 'Crete Round', serif;
+    font-size: 20px;
+}
+
+.creteround{
+     font-family: 'Crete Round', serif;
+     font-size: 50px;
+}
+
+
+.my-yellow {
+    color: #FFD700;
+}
+.cover-img {
+	height: 730px;
+	display: table;
+	width: 100%;
+	background-size: cover;
+}
+
+
+@media only screen and (min-width: 1500px) {
+	.cover-img {
+		height: 800px;
+	}
+}
+
+.cover-text {
+	display: table-cell;
+    vertical-align: middle;
+}
+
+// section {
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .scroll-container {
+//     scroll-behavior: smooth;
+//     height: 100vh;
+//     overflow-y: scroll;
+// }
+
+
+//User Pic size
+
 .br-max { 
     display: inline-block;
     width: 150px;

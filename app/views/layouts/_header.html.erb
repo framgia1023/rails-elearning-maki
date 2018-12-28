@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <%= link_to "Framgia ELS", root_path, class: "navbar-brand" %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark <%= "fixed-top" if current_page?(root_path)  %>">
+    <%=  image_tag "logo.png", class: "logo mr-2" %>
+    <%= link_to "Framgia ELS", root_path, class: "navbar-brand creteround-small text-warning"%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,23 +9,23 @@
         <ul class="navbar-nav mr-auto">
         <% if logged_in? %>
         <li class="nav-item">
-            <%= link_to dashboard_path, class: 'nav-link' do %>
-            <i class="fas fa-list-ul"></i> Dashboard
+            <%= link_to dashboard_path, class: "nav-link #{'active' if current_page?(dashboard_path)}" do %>
+            <i class="fas fa-list-ul"></i> DASHBOARD
             <% end %>
         </li>
         <li class="nav-item">
-            <%= link_to categories_path, class: 'nav-link' do %>
-            <i class="fas fa-book-open"></i> Categories
+            <%= link_to categories_path, class: "nav-link #{'active' if current_page?(categories_path)}"  do %>
+            <i class="fas fa-book-open"></i> CATEGORIES
             <% end %>
         </li>
         <li class="nav-item">
-            <%= link_to users_path, class: 'nav-link'  do %>
-            <i class="fas fa-users"></i> Members
+            <%= link_to users_path, class: "nav-link #{'active' if current_page?(users_path)}"  do %>
+            <i class="fas fa-users"></i> MEMBERS
             <% end %>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.name %>
+                <%= current_user.name  %>
             </a>        
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
@@ -41,23 +42,42 @@
 
         <% else %>
         <li class="nav-item">
-            <%= link_to root_path, class: "nav-link" do %>
-            <i class="fas fa-home"></i> Home
-            <% end %>
+                <% if current_page?(login_path) %>
+                <%= link_to "#", href: "/#home", class: "nav-link scroll" do %>
+                 <i class="fas fa-home"></i> HOME
+                <% end %>
+                <% else %>
+                <%= link_to "#", href: "#home", class: "nav-link scroll" do %>
+                 <i class="fas fa-home"></i> HOME
+                <% end %>
+                <% end %>
         </li>
         <li class="nav-item">
-            <%= link_to contact_path, class: "nav-link" do %>
-            <i class="fas fa-envelope"></i> Contact
+             <% if current_page?(login_path) %>
+            <%= link_to "#", href: "/#services", class: "nav-link scroll" do %>
+            <i class="fas fa-question"></i> ABOUT
+            <% end %>
+            <% else %>
+            <%= link_to "#", href: "#services" , class: "nav-link scroll" do %>
+            <i class="fas fa-question"></i> ABOUT
+            <% end %>
             <% end %>
         </li>
+
         <li class="nav-item">
-            <%= link_to new_user_path, class: "nav-link" do %>
-            <i class="fas fa-user-plus"></i> Sign up
+             <% if current_page?(login_path) %>
+            <%= link_to "#", href: "/#signup", class: "nav-link scroll" do %>
+            <i class="fas fa-user-plus"></i> SIGN UP
+            <% end %>
+            <% else %>
+            <%= link_to "#", href: "#signup", class: "nav-link  scroll" do %>
+            <i class="fas fa-user-plus"></i> SIGN UP
+            <% end %>
             <% end %>
         </li>
         <li class="nav-item">
             <%= link_to login_path, class: "nav-link" do %>
-            <i class="fas fa-sign-in-alt"></i> Log in
+            <i class="fas fa-sign-in-alt"></i> LOG IN
             <% end %>
         </li>
         <% end %>
@@ -68,10 +88,17 @@
             <div class="form-inline my-2 my-lg-0">
             <%= form_tag(users_path, method: :get) do %>
             <%= text_field_tag  :search, params[:search], class: "form-control mr-sm-2", placeholder: "Search User Name" %>
-            <%= submit_tag 'Search', name: nil,  class: "btn btn-outline-success my-2 my-sm-0" %>
+            <%= submit_tag 'Search', name: nil,  class: "btn btn-outline-warning my-2 my-sm-0" %>
             <% end %>
             </div>
         <% end %>
-      
-        
 </nav>
+
+<script>
+$('.scroll').click(function(e){
+    var jump = $(this).attr('href');
+    var new_position = $(jump).offset();
+    $('html, body').stop().animate({ scrollTop: new_position.top }, 500);
+    e.preventDefault();
+});
+</script>

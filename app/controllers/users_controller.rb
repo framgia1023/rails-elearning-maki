@@ -13,7 +13,7 @@ class UsersController < ApplicationController
             flash[:success] = "Welcome to Framgia E-Learning System!"
             redirect_to new_user_url
         else
-            render 'new'
+            render :template => "static_pages/home"
         end
     end
 

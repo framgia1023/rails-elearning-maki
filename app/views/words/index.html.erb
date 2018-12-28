@@ -17,18 +17,18 @@
                     <div class="d-inline ml-3"><%= "Followers" %></div>
                     <div>
                         <strong id="following">
-                        <%=link_to @user.following.count, following_user_path(@user), class: "mr-5" %>
+                        <%=link_to @user.following.count, following_user_path(@user), class: "mr-5 text-warning" %>
                         </strong>
                         
                         <strong id="followers">
-                        <%=link_to @user.followers.count, followers_user_path(@user), class: "ml-5" %>
+                        <%=link_to @user.followers.count, followers_user_path(@user), class: "ml-5 text-warning"  %>
                         </strong>
                     </div>
                 <hr>
 <!-- learned words -->
             <%= "Learned Words" %>
             <div>
-                <strong><%=link_to @user.learned_word, user_words_path(@user)  %></strong>
+                <strong><%=link_to @user.learned_word, user_words_path(@user), class: "text-warning"   %></strong>
             </div>
             </div>
         </div>
@@ -37,9 +37,8 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-            <%= "Learned Words" %>
-<!-- Category Select Dropdown -->
-            <%= link_to "Go Back", user_words_path(@user), class: "btn btn-info float-right" %>
+            <%= link_to "Go Back", user_path(@user), class: "btn btn-warning float-right" %>
+            <h5 class="d-inline"><%= "WORDS" %></h5>
             </div>
 <!-- Learned Words List -->
             <div class="card-body">
