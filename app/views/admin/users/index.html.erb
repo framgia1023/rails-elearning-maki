@@ -27,9 +27,9 @@
             <td>
                 <% unless current_user?(user) %>
                     <% if user.admin? %>
-                        <%= link_to "Remove Admin", remove_admin_admin_user_path(id: user), class: 'btn btn-outline-danger' %>
+                        <%= link_to "Remove Admin", remove_admin_admin_user_path(id: user), class: 'btn btn-outline-warning' %>
                     <% else %>
-                        <%= link_to "Set as Admin", set_admin_admin_user_path(id: user), class: 'btn btn-outline-info'%>
+                        <%= link_to "Set as Admin", set_admin_admin_user_path(id: user), class: 'btn btn-warning text-white'%>
                     <% end %>
                 <% end %>
             </td>
@@ -39,6 +39,6 @@
     </table>
 </div>
 
-<div class="border-top pt-3">
+<div class="mt-3">
         <%= will_paginate %>
 </div> 

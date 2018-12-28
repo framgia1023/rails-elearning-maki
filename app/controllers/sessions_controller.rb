@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
           session[:user_id] = user.id
           flash[:info] = "Welcome back, #{user.name}！"
-          redirect_to root_url
+          redirect_to user_path(user)
       else
           flash[:danger] = "Ooops! Your email or password was incorrect. Please try again!"
           render 'new'
