@@ -3,19 +3,26 @@
         <div class="row">
             <div id="home" class="col-xs-12 cover-img" style="background-image: url(/assets/toppic.jpg);">
                 <div class="cover-text text-center text-white">
-                    <h1 class="creteround ">Framgia Elearning Service</h1>
+                    <h1 class="creteround ">Framgia E-learning Service</h1>
+                    <% unless logged_in? %>
                     <h2 class="montserrat">Are you ready to join us?</h2>
                     <%= link_to "GET STARTED", "#", href: "#signup", class: "btn btn-warning btn-lg text-white mt-2 scroll"  %>
+                    <% else %>
+                    <h2 class="montserrat">Let's get started!</h2>
+                    <%= link_to "TELL ME MORE", "#", href: "#services", class: "btn btn-warning btn-lg text-white mt-2 scroll"  %>
+                    <% end %>
                 </div>
             </div>
         </div>
     </div>
 
 
-<section id="services"  style="background-color: white;">
+<section id="services">
+<div style="background-color: white;">
     <div class="col-xs-12 cover-img">
     <div class="cover-text">
         <div class="container mt-5 mb-5">
+
             <div class="row mb-4">
                 <div class="col-lg-12 text-center mb-2">
                    <h2 class="section-heading text-uppercase"><strong>About</strong></h2>
@@ -52,17 +59,18 @@
         </div>
     </div>
     </div>
+    </div>
 </section>
 
 
-<% unless logged_in? %>
 <section id="signup" style="background-color: gray;">
-    <div class="col-xs-12 cover-img mt-5">
+<% unless logged_in? %>
+    <div class="col-xs-12 cover-img x">
         <div class="cover-text">
             <div class="row mt-5">
                 <div class="col-lg-4 offset-lg-4">
                     <div class= "container">
-                        <h2 class="text-center text-white">SIGN UP</h2>
+                        <h2 class="text-center text-white"><strong>SIGN UP</strong></h2>
                         <hr />
                         <%= form_for @user do |f| %>
                             <%= render 'shared/error_messages', object: f.object %>
@@ -93,9 +101,12 @@
             </div>
         </div>
     </div>
-</section>
 <% else %>
 <% end %>
+</section>
+
+
+
 </main>
 
 <script>

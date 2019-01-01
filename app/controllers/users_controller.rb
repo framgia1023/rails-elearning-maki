@@ -11,9 +11,9 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             flash[:success] = "Welcome to Framgia E-Learning System!"
-            redirect_to new_user_url
+            redirect_to login_url
         else
-            render :template => "static_pages/home"
+            render 'new'
         end
     end
 
