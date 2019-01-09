@@ -1,29 +1,38 @@
-<div class="row">
-    <div class="col-lg-6 offset-lg-3">
-        <div class= "container">
-            <h2 class="text-center">Sign-up</h2>
-            <hr />
-            <%= form_for @user do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <div class="form-group">
-                    <%= f.label :name %>
-                    <%= f.text_field :name, class: 'form-control' %>
+<div class="col-xs-12 cover-img x">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                <div class="container">
+                    <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <h2 class="text-center"><strong>SIGN UP</strong></h2>
+                        <hr />
+                        <%= form_for @user do |f| %>
+                            <%= render 'shared/error_messages', object: f.object %>
+                            <div class="form-group">
+                                <%= f.label :name%>
+                                <%= f.text_field :name, class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :email %>
+                                <%= f.text_field :email, class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :password, class: "float-left d-inline" %>
+                                <p class="text-white float-left ml-2">(at least 6 characters)</p> 
+                                <%= f.password_field :password, class: 'form-control'  %>
+                            </div>
+                            <div class="form-group">
+                                <%= f.label :password_confirmation %>
+                                <%= f.password_field :password_confirmation, class: 'form-control' %>
+                            </div>
+                            <%= f.submit "Submit", class: 'btn btn-warning btn-block  mt-4' %>
+                            <div class="mt-2">
+                            <%= link_to "Already have an account?", login_path, class: "text-muted"%>
+                            </div>
+                        <% end %>
+                    </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <%= f.label :email %>
-                    <%= f.text_field :email, class: 'form-control' %>
                 </div>
-                <div class="form-group">
-                    <%= f.label :password %>
-                    <%= f.password_field :password, class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                    <%= f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation, class: 'form-control' %>
-                </div>
-
-                <%= f.submit "Submit", class: 'btn btn-warning btn-block' %>
-            <% end %>
-        </div>
+            </div>
     </div>
-</div>
